@@ -1,3 +1,5 @@
 venv
 secret.json
 .env
+social_kiptly_web/typing_extensions.py
+social_kiptly_web/dj_database_url.py
