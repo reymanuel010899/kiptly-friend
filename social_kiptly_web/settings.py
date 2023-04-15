@@ -84,11 +84,15 @@ WSGI_APPLICATION = 'social_kiptly_web.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-      'default': dj_database_url.config(
-        # Feel free to alter this value to suit your needs.
-        default='postgresql://postgres:postgres@localhost:5432/',
-        conn_max_age=600
-    )
+      'default': {
+         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+         'NAME': os.environ.get('NAME'),
+         'USER': os.environ.get('USER'),
+         'PASSWORD': os.environ.get('PASSWORD'),
+         'PORT':os.environ.get('PORT'),
+         'HOST': os.environ.get('HOST')
+
+      }
 }
 
 
