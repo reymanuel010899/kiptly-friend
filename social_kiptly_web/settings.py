@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
-import venv
+
 # Don't forget to import dj-database-url at the beginning of the file
 import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -84,20 +84,14 @@ WSGI_APPLICATION = 'social_kiptly_web.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-      'default':
-        dj_database_url.config(
-        # Feel free to alter this value to suit your needs.
-        default= {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME':os.environ.get('NAME'),
-            'USER':os.environ.get('USER'),
-            'PASSWORD':os.environ.get('PASSWORD'),
-            'PORT':os.environ.get('PORT'),
-            'HOST':os.environ.get('HOST')
-
-        },
-        conn_max_age=600
-    )
+      'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('NAME'),
+        'USER': os.environ.get('USER'),
+        'PASSWORD': os.environ.get('PASSWORD'),
+        'PORT': os.environ.get('PORT'),
+        'HOST': os.environ.get('HOST')
+      }
 }
 
 
