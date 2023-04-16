@@ -80,7 +80,7 @@ def friend_views(request):
 
 def perfil_setting_views(request):
     user_perfile =  User.objects.get(username=request.user.username)
-    form = userupdateavatar(instance=user_perfile)
+    form = userupdateavatar(instance=user_perfile, initial={"avatar":None})
     if request.method == "POST":
         nombres = request.POST.get('nombre','')
         if nombres != '':
