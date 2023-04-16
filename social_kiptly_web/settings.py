@@ -23,14 +23,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-with open('social_kiptly_web/secret.json') as f:
-    secret = json.loads(f.read())
+        # with open('social_kiptly_web/secret.json') as f:
+        #     secret = json.loads(f.read())
 
-    def get_secret(secret_name, secrets=secret):
-        return secrets[secret_name]
+        #     def get_secret(secret_name, secrets=secret):
+        #         return secrets[secret_name]
 
 
-SECRET_KEY = get_secret('SECRET_KEY')
+SECRET_KEY =  os.environ.get(('SECRET_KEY')) # get_secret('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'social_kiptly_web.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-      'default': dj_database_url.parse(get_secret('DATABASE_URL'))
+      'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
 
 
@@ -142,8 +142,8 @@ if not DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = 'smtp.gmail.com'
     EMAIL_PORT = 587
-    EMAIL_HOST_USER = get_secret("EMAIL_HOST_USER")
-    EMAIL_HOST_PASSWORD =  get_secret("EMAIL_HOST_PASSWORD")
+    EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+    EMAIL_HOST_PASSWORD =  os.environ.get("EMAIL_HOST_PASSWORD")
     EMAIL_USE_TLS = True
 
    
