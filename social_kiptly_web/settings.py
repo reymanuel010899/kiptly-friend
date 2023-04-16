@@ -9,13 +9,13 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
 from pathlib import Path
 import os
 
 
 # Don't forget to import dj-database-url at the beginning of the file
 import dj_database_url
+import json
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,9 +23,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+with open('social_kiptly_web/secret.json') as f:
+    secret = json.loads(f.read())
+
+    def get_secret(secret_name, secrets=secret):
+        return secrets[secret_name]
 
 
-SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
+SECRET_KEY = get_secret('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
@@ -87,7 +92,7 @@ WSGI_APPLICATION = 'social_kiptly_web.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-      'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+      'default': dj_database_url.parse(get_secret('DATABASE_URL'))
 }
 
 
@@ -133,29 +138,15 @@ if not DEBUG:
     # in your application directory on Render.
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
-
-    DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-    DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
     DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = 'smtp.gmail.com'
     EMAIL_PORT = 587
-    EMAIL_HOST_USER =  os.environ.get("EMAIL_HOST_USER")
-    EMAIL_HOST_PASSWORD =  os.environ.get("EMAIL_HOST_PASSWORD")
+    EMAIL_HOST_USER = get_secret("EMAIL_HOST_USER")
+    EMAIL_HOST_PASSWORD =  get_secret("EMAIL_HOST_PASSWORD")
     EMAIL_USE_TLS = True
 
-    SESSION_COOKIE_SUCURE = True
-    SECURE_BROWSER_XSS_FILTER = True
-    SECURE_CONTENT_TYPE_NOSNIFF = True
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_SECONDS = 31536000
-    SECURE_REDIRECT_EXEMPT = []
-    SECURE_SSL_REDIRECT = True
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+   
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
