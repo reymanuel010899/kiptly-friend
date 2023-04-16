@@ -38,10 +38,10 @@ class AmigoModels(models.Model):
 
 class PostModel(models.Model):
     user = models.ForeignKey(User, related_name="post_user_reverse",  on_delete=models.CASCADE)
-    archivo = models.FileField(upload_to='usuario/post')
-    video = models.FileField(upload_to='post/videos', blank=True)
-    images=models.FileField(upload_to='post/imagenes', blank=True)
-    descripcion = models.TextField(verbose_name="descripcion", blank=True)
+    archivo = models.FileField()
+    video = models.FileField(blank=True, null=True)
+    images=models.FileField(blank=True)
+    descripcion = models.TextField(verbose_name="descripcion", blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     objects = PostManayes()
     class Meta:
