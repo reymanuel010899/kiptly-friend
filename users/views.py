@@ -26,7 +26,7 @@ def registrar_usuario(request):
         perfil = request.FILES.get('perfil')
         try:
             user = User.objects.create_user(username, gmail, request.POST.get('password'), codigo=codig, avatar=perfil)
-            print(user)
+    
             redsocial = User.objects.get(id='1')
             mio , crd = AmigoModels.objects.get_or_create(user=user, añadidos=redsocial)
 
