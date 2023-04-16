@@ -40,7 +40,7 @@ class PostModel(models.Model):
     user = models.ForeignKey(User, related_name="post_user_reverse",  on_delete=models.CASCADE)
     archivo = models.FileField(upload_to='post/archivo')
     video = models.FileField(upload_to='post/videos', null=True,  blank=True)
-    images=models.FileField(upload_to='post/imagenes', null=True, blank=True)
+    images=models.ImageField(upload_to='post/imagenes', null=True, blank=True)
     descripcion = models.TextField(verbose_name="descripcion", blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     objects = PostManayes()

@@ -11,9 +11,9 @@
                     </div>
                
                        
-                        <form method="POST" enctype="multipart/form-data" >{% csrf_token %}
+                        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
                             <div class="publish_textarea">
-                                <img class="border-radius-image" src=" {{user.avatar.url}}" alt="" />
+                                <img class="border-radius-image" src="{{user.avatar.url}}" alt="" />
                                 <textarea name="status"   type="text" placeholder="¿Whats up, {{user.username}} ?" style="resize: none;"></textarea>
                             </div>
                             <div class="publish_icons">
