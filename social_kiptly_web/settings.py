@@ -149,7 +149,7 @@ if not DEBUG:
     EMAIL_USE_TLS =  os.environ.get('EMAIL_USE_TLS')
 
    
-    MEDIA_URL = '/media/'
+    MEDIA_URL = 'media/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static/'),
