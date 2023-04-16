@@ -12,7 +12,6 @@
                     <div class="friend">
                         {% for noti in notificaciones  %}
                         {% if noti.solicitud %}
-                      
                         <div class="friend_title">
                             <img src="{{noti.solicitud.user.avatar.url}} " alt="" />
                             <span><a href="{% url 'inicio_app:agregar-amigos' noti.solicitud.user.username %}  " class="selected-orang">{{noti.mensaje|truncatechars:50 }} </a>..</span>

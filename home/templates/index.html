@@ -120,17 +120,17 @@
                     <span>actividades recientes</span>
                 </div>
                 {% for noti in notificaciones  %}
-                {% if noti.like %}
-                    <div class="row_contain">
-                        <img src="{{noti.like.user.avatar.url}} " alt="" />
-                        <span><a href=" {% url 'inicio_app:feed' noti.like.post.id %} " class="selected-blue">{{noti.mensaje|truncatechars:50}}</a>..</span>
-                    </div>  
+                    {% if noti.like %}
+                        <div class="row_contain">
+                            <img src="{{noti.like.user.avatar.url}} " alt="" />
+                            <span><a href=" {% url 'inicio_app:feed' noti.like.post.id %} " class="selected-blue">{{noti.mensaje|truncatechars:50}}</a>..</span>
+                        </div>  
                     {% elif noti.comentarios %}
-                    <div class="row_contain">
-                        <img src="{{noti.comentarios.user.avatar.url}} " alt="" />
-                        <span><a href="{% url 'inicio_app:feed' noti.comentarios.post.id %} " class="selected-blue">{{noti.mensaje|truncatechars:50}}</a>..</span>
-                    </div>
-               {% endif %}
+                        <div class="row_contain">
+                            <img src="{{noti.comentarios.user.avatar.url}} " alt="" />
+                            <span><a href="{% url 'inicio_app:feed' noti.comentarios.post.id %} " class="selected-blue">{{noti.mensaje|truncatechars:50}}</a>..</span>
+                        </div>
+                    {% endif %}
                 {% endfor %}       
             </div>
         </div>
