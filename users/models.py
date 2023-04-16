@@ -24,7 +24,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
     genero = models.CharField(max_length=20)
-    avatar = models.ImageField()
+    avatar = models.ImageField(upload_to='perfil')
     ubicacion = models.CharField(max_length=70)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
