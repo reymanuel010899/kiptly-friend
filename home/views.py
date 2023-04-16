@@ -11,7 +11,6 @@ from .context_processors import validar_amigo
 from django.contrib.auth import logout, authenticate
 from .forms import  userupdateavatar
 
-set
 
 @login_required(login_url='users_app:registrar')
 def homeview(request):
