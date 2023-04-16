@@ -22,13 +22,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-        # with open('social_kiptly_web/secret.json') as f:
-        #     secret = json.loads(f.read())
+#SECURITY WARNING: keep the secret key used in production secret!
+# with open('secret.json') as f:
+#     secret = json.loads(f.read())
 
-        #     def get_secret(secret_name, secrets=secret):
-        #         return secrets[secret_name]
+#     def get_secret(secret_name, secrets=secret):
+#         return secrets[secret_name]
 
+
+# SECRET_KEY = get_secret('SECRET_KEY')
 
 SECRET_KEY =  os.environ.get(('SECRET_KEY')) 
 
@@ -93,6 +95,20 @@ WSGI_APPLICATION = 'social_kiptly_web.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
+# DATABASES = {
+#      'default': {
+    
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME':get_secret('NAME'),
+#         'USER':get_secret('USER'),
+#         'PASSWORD': get_secret('PASSWORD'),
+#         'HOST':get_secret('HOST'),
+#         'PORT': get_secret('PORT'),
+    
+# }
+
+# }
 DATABASES = {
       'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
@@ -146,17 +162,29 @@ STATICFILES_DIRS = [
  
 ]
 
-if not DEBUG:
+#if not DEBUG:
     # Tell Django to copy statics to the `staticfiles` directory
     # in your application directory on Render.
+    
+    
+    
+    
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT =587
+# EMAIL_HOST_USER = get_secret("EMAIL_HOST_USER")
+# EMAIL_HOST_PASSWORD =get_secret("EMAIL_HOST_PASSWORD")
+# EMAIL_USE_TLS =  True
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+   
 
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST = os.environ.get('EMAIL_HOST')
-    EMAIL_PORT = os.environ.get('EMAIL_PORT')
-    EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
-    EMAIL_HOST_PASSWORD =  os.environ.get("EMAIL_HOST_PASSWORD")
-    EMAIL_USE_TLS =  os.environ.get('EMAIL_USE_TLS') 
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD =  os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS =  os.environ.get('EMAIL_USE_TLS') 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
    
 
 # Default primary key field type

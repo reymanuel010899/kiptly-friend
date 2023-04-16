@@ -34,7 +34,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = usermaneyer()
     USERNAME_FIELD = 'gmail'
     REQUIRED_FIELDS = ['username',]
-
+    
 
     def update_online_status(self, user):
         is_online = timezone.now() - user.last_activity <= timezone.timedelta(minutes=5)
@@ -42,9 +42,11 @@ class User(AbstractBaseUser, PermissionsMixin):
             self.is_online = is_online
             self.save(update_fields=['is_online'])
         return is_online
-
+    
+    
   
-
+    def __str__(self):
+        return str(self.id)+ '-'+ self.username
 
 
 class InformacionPersonal(models.Model):

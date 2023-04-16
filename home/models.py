@@ -41,7 +41,7 @@ class PostModel(models.Model):
     archivo = models.FileField(upload_to='post/archivo')
     video = models.FileField(upload_to='post/videos', null=True,  blank=True)
     images=models.ImageField(upload_to='post/imagenes', null=True, blank=True)
-    descripcion = models.TextField(verbose_name="descripcion", blank=True, null=True)
+    descripcion = models.TextField(verbose_name="descripcion", blank=True)
     created = models.DateTimeField(auto_now_add=True)
     objects = PostManayes()
     class Meta:
