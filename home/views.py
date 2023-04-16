@@ -88,7 +88,7 @@ def perfil_setting_views(request):
             if actualisado is not None:
                 return redirect('inicio_app:perfil-about', username=actualisado.username)
 
-        form = userupdateavatar(request.POST, request.FILES, instance=user_perfile)
+        form = userupdateavatar(request.POST, request.FILES, instance=user_perfile, initial={'avatar':None})
         if form.is_valid():
             form.save()
             return redirect('inicio_app:inicio')
