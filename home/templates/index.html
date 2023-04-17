@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
 
 
@@ -31,12 +32,13 @@
                         <img src="{{post.user.avatar.url}} " alt="" />
                         <span><a href="{% url 'inicio_app:profile' post.user.username %}">{{post.user.username}} </a> shared a <a href="{% url 'inicio_app:feed' post.id %} ">photo</a><br><p>{{post.created}} </p></span>
                     </div>
+                    
                     <div class="feed_content">
-                         
-                               {% if post.images %}
+                                {% if post.images %}
+                                
                                     <div class="feed_content_image">
                                         {{post.descripcion|truncatechars:100}}
-                                        <a href="{% url 'inicio_app:feed' post.id %} "><img style="max-height: 400px;" src="{{post.images.url}}" alt="" /></a>
+                                        <a href="{% url 'inicio_app:feed' post.id %} "><img style="max-height: 400px;" src="{{post.archivo.url}}" alt="{{post.archivo.value}} " /></a>
                                     </div>
                               
                                 {% elif post.video %}
@@ -44,11 +46,13 @@
                                     <div class="feed">
                                         <div class="feed_content">
                                             <div class="feed_content_image">
-                                                <video src=" {{post.video.url}}"  style="height: 200px; width: 100%;" controls="controls" class="card-img-top" alt="">
+                                                <video src=" {{post.archivo.url}}"  style="height: 200px; width: 100%;" controls="controls" class="card-img-top" alt="">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
+
                                 {% elif post.descripcion %}
                                 {% if not post.images %}
                                 {% if not post.video %}
@@ -59,7 +63,8 @@
                                 {% endif %}                                  
                                 {% endif %}                                 
                                 {% endif %}
-                                {% endif %}                
+                                {% endif %}
+                                   
                     </div>
                     <div class="feed_footer">
                         <ul class="feed_footer_left">

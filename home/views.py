@@ -19,6 +19,7 @@ def homeview(request):
     agregar_like_publicaciones(request)
     post_comentario = PostModel.objects.all().order_by("-created")
     existe = si_tu_like_existe(request,post_comentario)
+    
     notificaciones = NotificacionesModels.objects.notificaciones(request.user).order_by('-created')[:5]
     uugerensias = AmigoModels.objects.sugerencias_amigos(request.user)
     sugerencia = User.objects.filter(id__in=uugerensias)[:4]
@@ -28,7 +29,7 @@ def homeview(request):
         archivo = request.FILES.get('files','')
         if contenido != '' or archivo != '': 
             PostModel.objects.create(user=request.user, archivo=archivo,   descripcion=contenido)
-    return render(request, 'index.html', {'posts':post_comentario, 'existe':existe,  'notificaciones':notificaciones, "sugerencia":sugerencia,'usuarios_activos':usuarios_activos,'cantidad_conectados':usuarios_activos.count()})
+    return render(request, 'index.html', {'posts':post_comentario, 'existe':existe, 'variable':None, 'notificaciones':notificaciones, "sugerencia":sugerencia,'usuarios_activos':usuarios_activos,'cantidad_conectados':usuarios_activos.count()})
 
 
 

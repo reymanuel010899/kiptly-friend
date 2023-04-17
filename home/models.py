@@ -150,12 +150,12 @@ class ChatVistoModels(models.Model):
         return self.amigo.añadidos.username
 
 
-def optimizar_imagen(sender, instance, **kwards):
-    if instance.archivo:
-        archivo = Image.open(instance.archivo.path)
-        archivo.save(instance.archivo.path, quality=30, optimize=True)
+# def optimizar_imagen(sender, instance, **kwards):
+#     if instance.archivo:
+#         archivo = Image.open(instance.archivo.path)
+#         archivo.save(instance.archivo.path, quality=30, optimize=True)
    
-post_save.connect(optimizar_imagen, sender=PostModel)   
+# post_save.connect(optimizar_imagen, sender=PostModel)   
 
 
 
