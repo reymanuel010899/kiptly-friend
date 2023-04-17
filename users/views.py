@@ -23,7 +23,7 @@ def registrar_usuario(request):
         username = request.POST.get('username')
         gmail = request.POST.get('gmail')
         perfil = request.FILES.get('perfil')
-        if self.request.POST.get('password','') != self.request.POST.get('password2',''):
+        if request.POST.get('password','') != request.POST.get('password2',''):
             return render(request, 'register.html', {"form":form, 'errores':"contraseñas incorrectas"} )
         try:
             user = User.objects.create_user(username, gmail, request.POST.get('password'), codigo=codig, avatar=perfil)
