@@ -14,8 +14,7 @@ from django.conf import settings
 from home.models import ChatModels
 # Create your views here.
 
-  
-    
+
 
 def registrar_usuario(request):
     form = UsuarioRegisterForm()

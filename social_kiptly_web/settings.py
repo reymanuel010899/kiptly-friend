@@ -56,7 +56,7 @@ DJANGO_APPS = (
     
 )
 
-LOCAL_APPS  =('home','users',)
+LOCAL_APPS  =('home','users','whitenoise',)
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
 
@@ -154,7 +154,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-MEDIA_URL = os.environ.get('MEDIA_URL')
+MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_DIRS = [
