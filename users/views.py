@@ -23,17 +23,20 @@ def registrar_usuario(request):
         username = request.POST.get('username')
         gmail = request.POST.get('gmail')
         perfil = request.FILES.get('perfil')
-        
+        if self.request.POST.get('password','') != self.request.POST.get('password2',''):
+            return render(request, 'register.html', {"form":form, 'errores':"contraseñas incorrectas"} )
         try:
             user = User.objects.create_user(username, gmail, request.POST.get('password'), codigo=codig, avatar=perfil)
-            redsocial = User.objects.get(id='1')
-            mio , crd = AmigoModels.objects.get_or_create(user=user, añadidos=redsocial)
-            obj , amigo = AmigoModels.objects.get_or_create(añadidos=user, user=redsocial) 
-            PostModel.objects.create(user=user, archivo=user.avatar)
-            mensaje = "Bienvenido %s  espero que te la pases bien en kiptly"%(user.username)
-            ChatModels.objects.create(user=redsocial, amigo=obj, mensaje=mensaje)
         except:
-            return render(request, 'register.html', {"form":form, 'errores':"correo already exist "} )
+            return render(request, 'register.html', {"form":form, 'errores':"correo ya existe, intente con otro correo "} )
+        redsocial = User.objects.get(id='1')
+        mio , crd = AmigoModels.objects.get_or_create(user=user, añadidos=redsocial)
+        obj , amigo = AmigoModels.objects.get_or_create(añadidos=user, user=redsocial) 
+        PostModel.objects.create(user=user, archivo=user.avatar)
+        mensaje = "Bienvenido %s  espero que te la pases bien en kiptly"%(user.username)
+        ChatModels.objects.create(user=redsocial, amigo=obj, mensaje=mensaje)
+       
+           
         asunto ='CODIGO DE VERIFICACION'
         messege = 'por favor agregar este codigo %s'%(codig)
         from_mail = settings.EMAIL_HOST_USER 
