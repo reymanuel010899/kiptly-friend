@@ -39,13 +39,12 @@
                     <div class="feed_footer">
                         <ul class="feed_footer_left">
                             <li class="hover-orange selected-orange"><a href="?like={{publicacion.id}}"><i class="fa fa-heart"></i></a></li>
-                            <li> {{post.like_post_reverse.count}}</li>
-                            
+                            <li> {{publicacion.like_post_reverse.count}} </li>
                         </ul>
                         <ul class="feed_footer_right">
                             <li>
-                                <li class="hover-orange selected-orange"><a href="{% url 'inicio_app:compartir-post' publicacion.id %} "><i class="fa fa-share"></i>{{publicacion.concartir_post_riverse.count}} </a></li>
-                                <li class="hover-orange"><a href=""><li><i class="fa fa-comments-o"></i> {{publicacion.comentario_post_reverse.count}} comments</li></a></li>
+                                <li class="hover-orange selected-orange"><a href="{% url 'inicio_app:compartir-post' publicacion.id %} "><i class="fa fa-share"></i> {{publicacion.concartir_post_riverse.count}} </a></li>
+                                <li><a href="" style="color:#515365;"><li class="hover-orange"><i class="fa fa-comments-o"></i> {{publicacion.comentario_post_reverse.count}} comments</li></a></li>
                             </li>
                         </ul>
                     </div>
