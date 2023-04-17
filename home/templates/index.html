@@ -34,9 +34,11 @@
                     
                     <div class="feed_content">
                                 {% if post.images %}
-                                
+
                                     <div class="feed_content_image">
+                                        {% if post.descripcion %}
                                         {{post.descripcion|truncatechars:100}}
+                                        {% endif %}
                                         <a href="{% url 'inicio_app:feed' post.id %} "><img style="max-height: 400px;" src="{{post.archivo.url}}" alt="{{post.archivo.value}} " /></a>
                                     </div>
                               

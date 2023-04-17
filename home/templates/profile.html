@@ -55,13 +55,14 @@
                         <img src="{{usuario.avatar.url}} " alt="" />
                         <span><b>{{usuario.username}}</b> Created -> <br><p>{{stat.creado}}</p></span>
                         {{stat.created}}
-                        
-                        
                     </div>
-                    
+             
                     <div class="feed_content">
                         {% if stat.images %}
                         <div class="feed_content_image">
+                            {% if stat.descripcion %}
+                            {{stat.descripcion|truncatechars:100}}
+                            {% endif %}
                             <a href="{% url 'inicio_app:feed' stat.id %} "><img style="max-height: 400px;" src="{{stat.archivo.url}} " alt="" /></a>
                         </div>
                         {% elif stat.video %}

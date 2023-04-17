@@ -107,7 +107,6 @@
 
 {% endblock content %}
 <div class="mobilemenu">
-
     <div class="mobilemenu_profile">
         <img id="mobilemenu_portada" src="{{user.avatar.url}} " />
         <div class="mobilemenu_profile">
@@ -115,6 +114,7 @@
             <span>{{user.username}} <br><p>{{totalamigos}} amigo / {{post}} post / {{like}} like</p></span>
         </div>
     
+        
         <div class="mobilemenu_menu">
             <ul>
                 <li><a href="{% url 'inicio_app:inicio' %}"><i class="fa fa-globe"></i>Inicio</a></li>

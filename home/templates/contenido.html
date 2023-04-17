@@ -45,14 +45,14 @@
                         {% if stat.images %}
                         <p style="margin-left: 20px;"></p>
                         <div class="feed_content_image">
-                            <a href=""><img src="{{stat.images.url}}" alt="" /></a>                          
+                            <a href=""><img src="{{stat.archivo.url}}" alt="" /></a>                          
                         </div>
                         {% elif stat.video %}
                         <div class="row border-radius">
                             <div class="feed">
                                 <div class="feed_content">
                                     <div class="feed_content_image">
-                                        <video src=" {{stat.video.url}}"  style="height: 200px; width: 100%;" controls="controls" class="card-img-top" alt="">
+                                        <video src=" {{stat.archivo.url}}"  style="height: 200px; width: 100%;" controls="controls" class="card-img-top" alt="">
                                     </div>
                                 </div>
                             </div>

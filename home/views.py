@@ -49,11 +49,12 @@ def  perfil(request, username):
     if request.method == "POST":
         contenido = request.POST.get('status','')
         archivo = request.FILES.get('files')
-        PostModel.objects.create(user=user, archivo=archivo,   descripcion=contenido)
-        comentar = request.POST.get('comentar','')
-        if comentar != '':
-            ComentarModels.objects.create()
-
+        if contenido and archivo:
+            PostModel.objects.create(user=user, archivo=archivo,   descripcion=contenido)
+        elif contenido or archivo:
+            PostModel.objects.create(user=user, archivo=archivo, descripcion=contenido)
+      
+       
     status = PostModel.objects.filter(user__username=username).order_by('-created')
     ultimas_fotos = PostModel.objects.ultimas_fotos(usuario).order_by('-created')[:10]
     amigos_comun = AmigoModels.objects.obtener_amigos_en_comun(usuario, user )[:5]
@@ -147,14 +148,13 @@ def buscar_contenido_views(request):
             if contenido != '' or archivo != '':
                 PostModel.objects.create(user=request.user, archivo=archivo,   descripcion=contenido)
                 return redirect('inicio_app:inicio')
-            
+            return redirect('inicio_app:inicio')
         else:
             contenido = request.GET.get('buscar','')
             if contenido != '':
                 resulatdo = User.objects.filtrar_contenido(contenido)
                 publicaciones = PostModel.objects.filter(descripcion__icontains=contenido) 
                 return render(request, 'contenido.html',{'encontrados':resulatdo,'publicaciones':publicaciones,'existe':existe, 'notificaciones':notificaciones, "sugerencia":sugerencia,'usuarios_activos':usuarios_activos,'cantidad_conectados':usuarios_activos.count()})
-        
             return render(request, 'contenido.html',{'existe':existe, 'notificaciones':notificaciones, "sugerencia":sugerencia,'usuarios_activos':usuarios_activos,'cantidad_conectados':usuarios_activos.count()})
 
 
