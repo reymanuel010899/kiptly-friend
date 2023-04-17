@@ -9,16 +9,16 @@
                         <span><a href="{% url 'inicio_app:profile' publicacion.user.username %}">{{publicacion.user.username}} </a> shared a <a href="">photo</a><br><p>{{publicacion.created}} </p></span>
                     </div>
                     <div class="feed_content">
-                        {% if publicacion.archivo %}
+                        {% if publicacion.images %}
                         <div class="feed_content_image">
-                            <img   src=" {{publicacion.images.url}}"  alt="" />
+                            <img   src=" {{publicacion.archivo.url}}"  alt="" />
                         </div>
                         {% elif publicacion.video %}
                         <div class="row border-radius">
                             <div class="feed">
                                 <div class="feed_content">
                                     <div class="feed_content_image">
-                                        <video src=" {{publicacion.video.url}}"  style="height: 200px; width: 100%;" controls="controls" class="card-img-top" alt="">
+                                        <video src=" {{publicacion.archivo.url}}"  style="height: 200px; width: 100%;" controls="controls" class="card-img-top" alt="">
                                     </div>
                                 </div>
                             </div>

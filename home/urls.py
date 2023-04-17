@@ -19,13 +19,13 @@ urlpatterns = [
     path('chat-usuario/<username>/', views.chats_usuarios, name="chat-usuario"),
     path("ultimo-chat/", views.ultimos_chats, name="ultimo-chat"),
     path('listar-notificaciones/', views.listar_notificaciones, name="listar-notificaciones"),
-    path('cambiar-contraseña/', views.cambiar_contraseña, name="cambiar-contraseña"),
     path("Settings/", views.Settings_views, name="Settings"),
     path("feed/<pk>/", views.feed_views, name="feed"),
     path("compartir-post/<pk>/", views.compartir_post, name="compartir-post"),
     path('sugerencia-amigo/', views.sugerencias_amigos_views, name="sugerencia-amigo"),
     path('comentar-post-profile/<pk>/',  views.comentar_post, name="comentar-post-profile" ),
-   # path('cambiar-perfil/', views.cambiar_perfil, name="cambiar-perfil")
+    # path('cambiar-perfil/', views.cambiar_perfil, name="cambiar-perfil")
+    #path('cambiar-contraseña/', views.cambiar_contraseña, name="cambiar-contraseña"),
     
 
 ]

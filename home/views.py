@@ -264,27 +264,27 @@ def listar_notificaciones(request):
 
 
 
-@login_required(login_url='users_app:registrar')
-def cambiar_contraseña(request):
-    if request.method == "GET":
-        return render(request, 'ChanGe-Password.html')
-    else: 
-        vieja = request.POST.get('oldpassword','')
-        if vieja != '':
-            user = request.user
-            usuario = authenticate(gmail=request.user.gmail, password=vieja)
-            if usuario is not None:
-                password1 = request.POST.get('password1','')
-                password2 = request.POST.get('password2','')
-                if  password1 and password2:
-                    if password1 == password2:
-                        user.set_password(password1)
-                        user.save()
-                        logout(request)
-                        return redirect('users_app:registrar')
-                    return render(request, 'ChanGe-Password.html',{'error':'introduzca las comtraseñas iguales'})
-            return render(request, 'ChanGe-Password.html',{'error':'introduzca la contraseña correcta'})      
-        return render(request, 'ChanGe-Password.html',{'error':'introduzca la contraseña vieja'})
+# @login_required(login_url='users_app:registrar')
+# def cambiar_contraseña(request):
+#     if request.method == "GET":
+#         return render(request, 'ChanGe-Password.html')
+#     else: 
+#         vieja = request.POST.get('oldpassword','')
+#         if vieja != '':
+#             user = request.user
+#             usuario = authenticate(gmail=request.user.gmail, password=vieja)
+#             if usuario is not None:
+#                 password1 = request.POST.get('password1','')
+#                 password2 = request.POST.get('password2','')
+#                 if  password1 and password2:
+#                     if password1 == password2:
+#                         user.set_password(password1)
+#                         user.save()
+#                         logout(request)
+#                         return redirect('users_app:registrar')
+#                     return render(request, 'ChanGe-Password.html',{'error':'introduzca las comtraseñas iguales'})
+#             return render(request, 'ChanGe-Password.html',{'error':'introduzca la contraseña correcta'})      
+#         return render(request, 'ChanGe-Password.html',{'error':'introduzca la contraseña vieja'})
     
 
 def Settings_views(request):

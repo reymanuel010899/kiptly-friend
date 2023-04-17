@@ -26,7 +26,7 @@
                <ul>
                 {% for valor in fotos  %}
                 {% if valor.images %}
-                    <li><a href="{% url 'inicio_app:feed' valor.id  %} "><img src="{{valor.images.url}} " style="height: 125px; width: 125px;" class="card-img-top" alt=""></a></li>
+                    <li><a href="{% url 'inicio_app:feed' valor.id  %} "><img src="{{valor.archivo.url}} " style="height: 125px; width: 125px;" class="card-img-top" alt=""></a></li>
                 {% endif %}
                     {% empty %}
                     <h1>no hay resultados</h1>
