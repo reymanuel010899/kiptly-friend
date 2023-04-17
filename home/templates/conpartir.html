@@ -9,9 +9,22 @@
                 <span><b>{{post.user.username}} </b> shared a <a href="">photo</a><br><p>{{post.created}} </p></span>
             </div>
             <div class="feed_content">
+                {% if post.images %}
                 <div class="feed_content_image"  >
                     <img  style="height: 300px; " src=" {{post.archivo.url}}"  alt="" />
                 </div>
+                {% elif post.video  %}
+                <div class="row border-radius">
+                    <div class="feed">
+                        <div class="feed_content">
+                            <div class="feed_content_image">
+                                <video src=" {{post.archivo.url}}"  style="height: 200px; width: 100%;" controls="controls" class="card-img-top" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+               
             </div>
         </div>      
             {% for amigo in  amigos %}

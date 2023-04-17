@@ -39,7 +39,8 @@
                     <div class="feed_footer">
                         <ul class="feed_footer_left">
                             <li class="hover-orange selected-orange"><a href="?like={{publicacion.id}}"><i class="fa fa-heart"></i></a></li>
-                            <li><span><b> {% if existe %} Tu  and  {% else %} {% endif %} </b>  {{publicacion.like_post_reverse.count}}  {% if existe %} more liked this {% else %} {% endif %} </span></li>
+                            <li> {{post.like_post_reverse.count}} </li>
+                            
                         </ul>
                         <ul class="feed_footer_right">
                             <li>
@@ -55,7 +56,7 @@
                     <ul>
                         <form  method="POST">{% csrf_token %}
                             <li style="margin-left: 5%;">
-                                <textarea name="comentario" style="position:static;"  id="" cols="85" rows="2"></textarea><br>
+                                <textarea name="comentario" style="position:static;"  id="" cols="50" rows="2"></textarea><br>
                                 <button type="submit"  style="color: black">Comentar</button>
                             </li>
                         </form>

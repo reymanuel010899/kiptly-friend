@@ -69,7 +69,7 @@
                             <div class="feed">
                                 <div class="feed_content">
                                     <div class="feed_content_image">
-                                        <video src=" {{stat.video.url}}"  style="height: 200px; width: 100%;" controls="controls" class="card-img-top" alt="">
+                                        <video src=" {{stat.archivo.url}}"  style="height: 200px; width: 100%;" controls="controls" class="card-img-top" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -88,14 +88,14 @@
                     </div>
                     <div class="feed_footer">
                         <ul class="feed_footer_left">
-                            <li class="hover-orange selected-orange"><a  href="{% url 'inicio_app:agregar-like' stat.id  %} " class="fa fa-heart"></a>{{stat.like_status_reverse.count}} </li>
-                            <li><span><b></b> {{stat.like_post_reverse.count }}</span></li>
+                            <li class="hover-orange selected-orange"><a  href="{% url 'inicio_app:agregar-like' stat.id  %} "><i class="fa fa-heart"></i></a>{{stat.like_status_reverse.count}}</li>
+                            <li> {{stat.like_post_reverse.count }}</li>
                            
                         </ul>
                         <ul class="feed_footer_right">
                             <li>
                                 <li class="hover-orange selected-orange"><a href="{% url 'inicio_app:compartir-post' stat.id %}"><i class="fa fa-share"></i>{{stat.concartir_post_riverse.count}} </li></a>
-                                <a href=" {% url 'inicio_app:feed' stat.id %}" style="color:#515365;"><li class="hover-orange"><i class="fa fa-comments-o"></i> {{stat.comentario_post_reverse.count}} comments</li></a>
+                               <li><a href=" {% url 'inicio_app:feed' stat.id %}" style="color:#515365;"><li class="hover-orange"><i class="fa fa-comments-o"></i> {{stat.comentario_post_reverse.count}} comments</li></a></li>
                                 
                             </li>
                         </ul>
@@ -116,14 +116,14 @@
                             <span style="margin-left: 30px;"> {{stat.post.descripcion}}</span>  
                             {% if stat.post.images %}
                             <div class="feed_content_image">                                                              
-                                <a href="{% url 'inicio_app:feed' stat.post.id %} "><img src="{{stat.post.images.url}} " alt="" /></a>                           
+                                <a href="{% url 'inicio_app:feed' stat.post.id %} "><img src="{{stat.post.archivo.url}} " alt="" /></a>                           
                             </div>
                             {% elif stat.post.video %}
                             <div class="row border-radius">
                                 <div class="feed">
                                     <div class="feed_content">
                                         <div class="feed_content_image">
-                                            <video src=" {{stat.post.video.url}}"  style="height: 200px; width: 100%;" controls="controls" class="card-img-top" alt="">
+                                            <video src=" {{stat.post.archivo.url}}"  style="height: 200px; width: 100%;" controls="controls" class="card-img-top" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -132,13 +132,13 @@
                         </div>
                         <div class="feed_footer">
                             <ul class="feed_footer_left">
-                                <li class="hover-orange selected-orange"><a  href="?like={{stat.post.id}}" class="fa fa-heart"></a></li>
-                                <li><span><b></b> Tu and {{stat.post.like_post_reverse.count}}  more liked this</span></li>
+                                <li class="hover-orange selected-orange"><a  href="?like={{stat.post.id}}" ><i class="fa fa-heart"></i></a></li>
+                                <li>{{stat.post.like_post_reverse.count}}</li>
                             </ul>
                             <ul class="feed_footer_right">
                                 <li>
                                     <li class="hover-orange selected-orange"><a href="{% url 'inicio_app:compartir-post' stat.post.id %} "><i class="fa fa-share"></i>{{stat.post.concartir_post_riverse.count}}</li></a>
-                                    <a href= "{% url 'inicio_app:feed' stat.post.id %} " style="color:#515365;"><li class="hover-orange"><i class="fa fa-comments-o"></i> {{stat.post.comentario_post_reverse.count}} comments</li></a>
+                                   <li><a href= "{% url 'inicio_app:feed' stat.post.id %} " style="color:#515365;"><li class="hover-orange"><i class="fa fa-comments-o"></i> {{stat.post.comentario_post_reverse.count}} comments</li></a></li> 
                                     
                                 </li>
                             </ul>
