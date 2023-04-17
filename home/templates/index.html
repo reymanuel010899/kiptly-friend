@@ -36,7 +36,7 @@
                                {% if post.images %}
                                     <div class="feed_content_image">
                                         {{post.descripcion|truncatechars:100}}
-                                        <a href="{% url 'inicio_app:feed' post.id %} "><img style="max-height: 400px;" src="{% staic 'media/'|add:post.images %}" alt="" /></a>
+                                        <a href="{% url 'inicio_app:feed' post.id %} "><img style="max-height: 400px;" src="{% static 'media/'|add:post.images %}" alt="" /></a>
                                     </div>
                               
                                 {% elif post.video %}
@@ -44,7 +44,7 @@
                                     <div class="feed">
                                         <div class="feed_content">
                                             <div class="feed_content_image">
-                                                <video src="{% staic 'media/'|add:post.video %}"  style="height: 200px; width: 100%;" controls="controls" class="card-img-top" alt="">
+                                                <video src="{% static 'media/'|add:post.video %}"  style="height: 200px; width: 100%;" controls="controls" class="card-img-top" alt="">
                                             </div>
                                         </div>
                                     </div>
