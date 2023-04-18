@@ -97,22 +97,22 @@ WSGI_APPLICATION = 'social_kiptly_web.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 
-# DATABASES = {
-#      'default': {
-    
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME':get_secret('NAME'),
-#         'USER':get_secret('USER'),
-#         'PASSWORD': get_secret('PASSWORD'),
-#         'HOST':get_secret('HOST'),
-#         'PORT': get_secret('PORT'),
-    
-# }
-
-# }
 DATABASES = {
-      'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+     'default': {
+    
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME':os.environ.get('RAILWAY_PG_URL'),
+        'OPTIONS': {
+            'sslmode': 'require',
+       
+    }
+
+    }
+     
 }
+# DATABASES = {
+#       'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+# }
 
 
 AUTH_USER_MODEL = 'users.User'
