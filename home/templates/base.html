@@ -56,27 +56,42 @@
         <div class="rowfixed"></div>
         <div class="left_row">
             <div class="left_row_profile"> 
-                <div>                          
-                    {% if usuario  %}
+                <div>  
+                    {% if persona %}
+                    <img id="portada" style="border-radius: 15px;"  src="{{persona.avatar.url}}"/>
+                    <div class="left_row_profile">
+                    <img id="profile_pic"   src="{{persona.avatar.url}}"/>
+                    <span>{{persona.username}} <br><h5> {{cantidad_amix}} amigo / {{cantidad_pots}} post / {{cantidad_like}} like</p></h5>
+
+                    {% elif usuario  %}
+                    <!-- vista de muro -->
                     <img id="portada" style="border-radius:15px;"  src="{{usuario.avatar.url}}"/>
                     <div class="left_row_profile">
                     <img id="profile_pic"  src="{{usuario.avatar.url}} " />
                     <span >{{usuario.username}} <br><h5>{{cantidad_amigos}} amigo / {{cantidad_post}} post / {{cantidad_like}} like</h5></span>
-                   
+
+
                     {% elif  usuarios %}
-                    <img id="portada" style="border-radius: 15px;"  src="{{user.avatar.url}}"/>
+                    <!-- vista de fotos -->
+                    <img id="portada" style="border-radius: 15px;"  src="{{usuarios.avatar.url}}"/>
                     <div class="left_row_profile">
-                    <img id="profile_pic"   src="{{user.avatar.url}}"/>
-                    <span>{{user.username}} <br><h5>/ {{totalamigos}} amigo   / {{post}} post / {{like}} like</p></h5>
+                    <img id="profile_pic"   src="{{usuarios.avatar.url}}"/>
+                    <span>{{usuarios.username}} <br><h5> {{nun_amigo}} amigo / {{nun_post}} post / {{nun_like}} like</p></h5>
+
+
                     {% else %}
+                    <!-- inicio -->
                     <img id="portada" style="border-radius: 15px;"  src="{{user.avatar.url}}"/>
                     <div class="left_row_profile">
                     <img id="profile_pic"   src="{{user.avatar.url}}"/>
-                    <span>{{user.username}} <br><h5>{{totalamigos}} amigo / {{post}} post / {{like}} like</h5></span>
+                    <span>{{user.username}}<br><h5>{{user.añadidos_user.count}} amigo / {{user.post_user_reverse.count}} post / {{cantidad_like}} like</h5></span>
                     {% endif %}
+                    
+                          
                 </div>                               
                 </div>
             </div>
+       
             <div class="rowmenu" style=>
                 <ul>
                     <li><a href="{% url 'inicio_app:inicio' %}" id="rowmenu-selected"><i class="fa fa-globe"></i>inicio</a></li>
@@ -108,27 +123,37 @@
 {% endblock content %}
 <div class="mobilemenu">
     <div class="mobilemenu_profile">
-       
+       <div>
         
             <!-- <span>{{user.username}} <br><p>{{totalamigos}} amigo / {{post}} post / {{like}} like</p></span> -->
-            {% if usuario %}
+            
+            {% if persona %}
             <img id="mobilemenu_portada" src="{{usuario.avatar.url}} " />
             <div class="mobilemenu_profile">
             <img id="mobilemenu_profile_pic" src="{{usuario.avatar.url}} " /><br>
-            <span >{{usuario.username}} <br><h5>{{cantidad_amigos}} amigo / {{cantidad_post}} post / {{cantidad_like}} like</h5></span>
+            <span >{{usuario.username}} <br><h5>  {{cantidad_amix}} amigo /  {{cantidad_pots}} post / {{cantidad_like}} like</h5></span>
+
+      
+            {% elif usuario %}
+            <img id="mobilemenu_portada" src="{{usuario.avatar.url}} " />
+            <div class="mobilemenu_profile">
+            <img id="mobilemenu_profile_pic" src="{{usuario.avatar.url}} " /><br>
+            <span >{{usuario.username}} <br><h5>  {{cantidad_amigos}} amigo / {{cantidad_post}} post / {{cantidad_like}} like</h5></span>
+
             {% elif usuarios %}
-            <img id="mobilemenu_portada" src="{{usuario.avatar.url}} " />
+            <img id="mobilemenu_portada" src="{{usuarios.avatar.url}} " />
             <div class="mobilemenu_profile">
-            <img id="mobilemenu_profile_pic" src="{{usuario.avatar.url}} " /><br>
-            <span>{{user.username}} <br><h5>/ {{totalamigos}} amigo   / {{post}} post / {{like}} like</p></h5>
+            <img id="mobilemenu_profile_pic" src="{{usuarios.avatar.url}} " /><br>
+            <span>{{usuarios.username}} <br><h5> {{nun_amigo}} amigo   / {{nun_post}} post / {{nun_like}} like</p></h5>
+
             {% else %}
             <img id="mobilemenu_portada" src="{{user.avatar.url}} " />
             <div class="mobilemenu_profile">
             <img id="mobilemenu_profile_pic" src="{{user.avatar.url}} " /><br>
-            <span>{{user.username}} <br><h5>/ {{totalamigos}} amigo   / {{post}} post / {{like}} like</p></h5>
+            <span>{{user.username}} <br><h5> {{cantidad_amigo}} amigo   / {{cantidad_post}} post / {{cantidad_like}} like</p></h5>
             {% endif %}
         </div>
-
+    </div>
         <div class="mobilemenu_menu">
             <ul>
                 <li><a href="{% url 'inicio_app:inicio' %}"><i class="fa fa-globe"></i>Inicio</a></li>

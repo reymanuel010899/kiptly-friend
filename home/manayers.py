@@ -18,6 +18,7 @@ class PostManayes(models.Manager):
         post = self.filter(user=usuario).count()
         return sum(lista), post
     
+    
     def catidad_de_comentario(self):
         cantida =  self.all()
         return cantida

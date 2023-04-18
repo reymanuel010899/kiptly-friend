@@ -15,21 +15,22 @@ from .forms import  userupdateavatar
 @login_required(login_url='users_app:registrar')
 def homeview(request):
     #activo = seciones_activas(request)
-   
+    usuario = User.objects.get(username=request.user.username)
     agregar_like_publicaciones(request)
     post_comentario = PostModel.objects.all().order_by("-created")
     existe = si_tu_like_existe(request,post_comentario)
-    
+    cant_amigos = AmigoModels.objects.filter(user=request.user).count()
+    cant_like, cant_post = PostModel.objects.camtidades(usuario) 
     notificaciones = NotificacionesModels.objects.notificaciones(request.user).order_by('-created')[:5]
     uugerensias = AmigoModels.objects.sugerencias_amigos(request.user)
-    sugerencia = User.objects.filter(id__in=uugerensias)[:4]
+    sugerencia = User.objects.filter(id__in=uugerensias)[:5]
     usuarios_activos = AmigoModels.objects.filter(user=request.user,  añadidos__is_online=True)[:10]
     if request.method == 'POST':
         contenido = request.POST.get('status','')
         archivo = request.FILES.get('files','')
         if contenido != '' or archivo != '': 
             PostModel.objects.create(user=request.user, archivo=archivo,   descripcion=contenido)
-    return render(request, 'index.html', {'posts':post_comentario, 'existe':existe, 'variable':None, 'notificaciones':notificaciones, "sugerencia":sugerencia,'usuarios_activos':usuarios_activos,'cantidad_conectados':usuarios_activos.count()})
+    return render(request, 'index.html', {'posts':post_comentario,'notificaciones':notificaciones, "sugerencia":sugerencia,'usuarios_activos':usuarios_activos,'cantidad_conectados':usuarios_activos.count(),   })
 
 
 
@@ -112,10 +113,12 @@ def perfil_setting_views(request):
 def fotos_views(request, username):
     if request.method == "GET":
         usuario = User.objects.get(username=username)
+        cant_amigos = AmigoModels.objects.filter(user=usuario).count()
+        cant_like, cant_post = PostModel.objects.camtidades(usuario) 
         user=request.user
         amigo_o_no=validar_amigo(usuario, user)
         fotos =  PostModel.objects.filter(user__username=username).order_by("-created")
-    return render(request, "photos.html",{'fotos':fotos,'usuarios':usuario, 'amigo_o_no':amigo_o_no})
+    return render(request, "photos.html",{'fotos':fotos,'usuarios':usuario, 'amigo_o_no':amigo_o_no, 'nun_post':cant_post, 'nun_like':cant_like, 'nun_amigo':cant_amigos})
 
 
 
@@ -123,13 +126,15 @@ def fotos_views(request, username):
 @login_required(login_url='users_app:registrar')
 def about_views(request, username):
     usuario = User.objects.get(username=username)
+    cant_amigos = AmigoModels.objects.filter(user=usuario).count()
+    cant_like, cant_post = PostModel.objects.camtidades(usuario) 
     user=request.user
     amigo_o_no=validar_amigo(usuario, user)
     amigos_comun = AmigoModels.objects.obtener_amigos_en_comun(usuario, user )[:5]
     ultimas_fotos = PostModel.objects.ultimas_fotos(usuario).order_by('-created')[:10]
     personal = InformacionPersonal.objects.filter(user__username=username).first()
     if personal:
-        return render(request, "about.html", {'personal':personal, 'amigo_o_no':amigo_o_no, 'usuario':usuario, 'fotos':ultimas_fotos, 'amigos':amigos_comun})
+        return render(request, "about.html", {'personal':personal,'persona':usuario, 'cantidad_amix':cant_amigos, 'cantidad_pots':cant_post,'cantidad_like':cant_like,  'amigo_o_no':amigo_o_no, 'usuario':usuario, 'fotos':ultimas_fotos, 'amigos':amigos_comun})
     return redirect('inicio_app:perfil-setting')
 
 
@@ -259,7 +264,7 @@ def ultimos_chats(request):
 @login_required(login_url='users_app:registrar')
 def listar_notificaciones(request):
     if request.method == "GET":
-        notificaciones = NotificacionesModels.objects.notificaciones(request.user)[:15]
+        notificaciones = NotificacionesModels.objects.notificaciones(request.user).order_by('-created')[:15]
         return render(request, 'notificaciones.html', {"notificaciones":notificaciones, })
 
 

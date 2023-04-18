@@ -14,7 +14,7 @@
 </head>
 <body >
     {% include 'sidebar_lef_include.html' %}
-    <div class="container clearfix" style="">
+    <div class="container clearfix" style="margin-left:5%;">
         <div class="people-list" id="people-list">
           <div class="search" >
             <form action="{% url 'inicio_app:chat-usuario' amigos.añadidos.username %}" method="POST">{% csrf_token %}

@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="right_row">
-
+    
     <div class="row border-radius">
         <center><div class="settings shadow">
             <div class="settings_title">
-                <h3>notificaciones </h3>
+                <div><h2 style="color: black; ">Notificaciones</h2></div>
             </div>
             <div class="settings_content">
-                <div class="row border-radius">
+                
+                <div >
+                    
                     <div class="friend">
                         {% for noti in notificaciones  %}
                         {% if noti.solicitud %}
