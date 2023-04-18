@@ -100,7 +100,7 @@ WSGI_APPLICATION = 'social_kiptly_web.wsgi.application'
 DATABASES = {
      'default': {
     
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME':os.environ.get('RAILWAY_PG_URL'),
         'OPTIONS': {
             'sslmode': 'require',
