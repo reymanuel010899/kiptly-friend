@@ -45,7 +45,7 @@
                         {% if stat.images %}
                         <p style="margin-left: 20px;"></p>
                         <div class="feed_content_image">
-                            <a href=""><img src="{{stat.archivo.url}}" alt="" /></a>                          
+                            <a href="{% url 'inicio_app:feed' stat.id %} "><img src="{{stat.archivo.url}}" alt="" /></a>                          
                         </div>
                         {% elif stat.video %}
                         <div class="row border-radius">
